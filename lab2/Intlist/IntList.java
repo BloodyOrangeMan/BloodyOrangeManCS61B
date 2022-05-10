@@ -93,6 +93,9 @@ public class IntList {
             return  A;
         }
         */
+        if (A == null){
+            return B;
+        }
         if(A.rest == null){
             A.rest = B;
             return null;
