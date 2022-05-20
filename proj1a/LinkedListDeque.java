@@ -32,6 +32,15 @@ public class LinkedListDeque<T> {
         this.size = 1;
     }
 
+    public LinkedListDeque(LinkedListDeque other) {
+        this.sentinel = new typeNode();
+        this.sentinel.next = this.sentinel;
+        this.sentinel.prev = this.sentinel;
+        for (int i = 0; i < other.size; i++ ) {
+            this.addLast((T) other.get(i));
+        }
+    }
+
     public void addFirst(T x) {
         this.sentinel.next.prev = new typeNode(x, this.sentinel, this.sentinel.next);
         this.sentinel.next = this.sentinel.next.prev;
@@ -67,6 +76,7 @@ public class LinkedListDeque<T> {
         } else {
             this.sentinel.next = this.sentinel.next.next;
             this.sentinel.next.prev = this.sentinel;
+            this.size--;
             return this.sentinel.next.item;
         }
     }
@@ -77,8 +87,38 @@ public class LinkedListDeque<T> {
         } else {
             this.sentinel.prev = this.sentinel.prev.prev;
             this.sentinel.prev.next = this.sentinel;
+            this.size--;
             return this.sentinel.prev.item;
         }
     }
+
+    public T get(int index) {
+        if (this.isEmpty() || index > (this.size - 1)) {
+            return null;
+        } else {
+            typeNode p = this.sentinel.next;
+            for(int i = 0; i < index ; i++) {
+                p = p.next;
+            }
+            return p.item;
+        }
+    }
+
+    public T getRecursive(int index, typeNode p) {
+        if (index == 0) {
+            return p.item;
+        } else {
+            index--;
+            return getRecursive(index, p.next);
+        }
+    }
+    public T getRecursive(int index) {
+        if (this.isEmpty() || index > (this.size - 1)) {
+            return null;
+        } else {
+            return getRecursive(index, this.sentinel.next);
+        }
+    }
+
 
 }
