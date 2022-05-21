@@ -64,11 +64,13 @@ public class ArrayDeque<T> {
 
     public T removeFirst() {
         this.nextFirst = Math.floorMod(this.nextFirst + 1, item.length);
+        this.size--;
         return item[this.nextFirst];
     }
 
     public T removeLast() {
         this.nextLast = Math.floorMod(this.nextLast - 1, item.length);
+        this.size--;
         return item[this.nextLast];
     }
 
