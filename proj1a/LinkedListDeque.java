@@ -54,7 +54,6 @@ public class LinkedListDeque<T> {
     }
 
     public boolean isEmpty() {
-
         return this.sentinel.next == this.sentinel.prev;
     }
 
@@ -65,7 +64,7 @@ public class LinkedListDeque<T> {
     public void printDeque() {
         typeNode p = this.sentinel.next;
         while(p != this.sentinel) {
-            System.out.println(p.item);
+            System.out.print(p.item + " ");
             p = p.next;
         }
     }
